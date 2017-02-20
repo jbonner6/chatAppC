@@ -12,6 +12,7 @@
 
 #define KBLU  "\x1B[34m"
 #define KNRM  "\x1B[0m"
+#define KGRN  "\x1B[32m"
 
 pthread_mutex_t lock;
 
@@ -72,6 +73,18 @@ void* listen_for_incoming(void* in_socket){
 }
 
 int main(int argc, char *argv[]){
+  char* username;
+  if (argc != 3){
+      printf("Invalid Command Line Arguments: clientMake -u <username>\n");
+      exit(-1);
+  } else if (strcmp(argv[1], "-u") != 0){
+      printf("Invalid second argument: %s\n", argv[1]);
+      exit(-1);
+  } else {
+      username = argv[2];
+      printf(KGRN "Welcome %s!", username);
+      printf(KNRM "\n");
+  }
   int clientSocket;
 
   struct addrinfo hints, *res;
