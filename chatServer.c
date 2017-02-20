@@ -40,7 +40,7 @@ int main(){
   hints.ai_family = AF_UNSPEC;
   hints.ai_socktype = SOCK_STREAM;
 
-  getaddrinfo("127.0.0.1", "3635", &hints, &res);
+  getaddrinfo("127.0.0.1", "3636", &hints, &res);
 
   servSocket = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
 
