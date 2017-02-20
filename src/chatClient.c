@@ -10,6 +10,9 @@
 #include <stdbool.h>
 #include <pthread.h>
 
+#define KBLU  "\x1B[34m"
+#define KNRM  "\x1B[0m"
+
 pthread_mutex_t lock;
 
 bool hasNewLine(char buffer[10000], size_t size){
@@ -25,7 +28,8 @@ void* listen_for_incoming(void* in_socket){
     while(1){
         sleep(5);
         pthread_mutex_lock(&lock);
-        printf("%s", "\nEntered listen thread\n>> ");
+        printf(KBLU "\nEntered listen thread\n" KNRM);
+        printf(">> ");
         fflush(stdout);
         pthread_mutex_unlock(&lock);
     }
