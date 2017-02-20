@@ -10,6 +10,7 @@
 int main(){
   int clientSocket;
   socklen_t addr_size;
+  size_t nBytes = 100;
 
   struct addrinfo hints, *res;
 
@@ -28,11 +29,12 @@ int main(){
   if (status < 0){
       return 0;
   }
+  char testBuffer[1024];
   while (1){
-      char testBuffer[1024];
-      scanf("%s", testBuffer);
-      strcat(testBuffer, "\n");
-      send(clientSocket,testBuffer,13,0);
+      fgets(testBuffer,sizeof(testBuffer), stdin);
+    //   printf("%s",testBuffer);
+    //   strcat(testBuffer, "\n");
+      send(clientSocket,testBuffer,sizeof(testBuffer),0);
       memset(&testBuffer[0], 0, sizeof(testBuffer));
   }
   close(clientSocket);
